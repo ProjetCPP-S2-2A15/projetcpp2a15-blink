@@ -2,36 +2,37 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QTreeWidgetItem>
-#include "centre.h"
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QTableWidget>
+#include <QDateEdit>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
 
-QT_BEGIN_NAMESPACE
-namespace Ui {
-class MainWindow;
-}
-QT_END_NAMESPACE
-
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-public slots:
-    void afficherCentres();
-
 private slots:
-    void ajouterCentre();
-    void on_treeWidget_Centre_itemClicked(QTreeWidgetItem *item, int column);
-    void modifierCentre();
-    void supprimerCentre();
-    void clearFieldsAdd();
-    void clearFieldsUpdate();
+    void onAjouterClicked();  // Slot for the "ajouter" button
+    void onSupprimerClicked(); // Slot for the "supprimer" button
 
 private:
-    Ui::MainWindow *ui;
-    Centre centre;
+    // UI elements
+    QLineEdit *id_examen;
+    QLineEdit *nom_ex;
+    QLineEdit *niveau_ex;
+    QLineEdit *session;
+    QDateEdit *date_examen;
+    QLineEdit *nombre;
+    QLineEdit *id_2; // For deleting
+    QTableWidget *table;
+    QPushButton *pushButton;  // "ajouter" button
+    QPushButton *pushButton_2; // "supprimer" button
 };
+
 #endif // MAINWINDOW_H
