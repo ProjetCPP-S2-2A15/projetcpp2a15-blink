@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>3.png</file>
+        <file>4.png</file>
+        <file>4-removebg-preview.png</file>
+    </qresource>
+</RCC>
