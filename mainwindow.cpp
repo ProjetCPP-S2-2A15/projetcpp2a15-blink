@@ -74,10 +74,6 @@ void MainWindow::on_b_valider_clicked()
     static const QRegularExpression addressRegex("^[A-Za-z0-9À-ÿ ,.-]+$");
     static const QRegularExpression emailRegex("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
 
-    if (id_etab <= 0) {
-        QMessageBox::warning(this, "ID invalide", "L'ID doit être un entier positif !");
-        return;
-    }
 
     if (!nameRegex.match(nom).hasMatch()) {
         QMessageBox::warning(this, "Nom invalide", "Le nom ne doit contenir que des lettres et des espaces !");

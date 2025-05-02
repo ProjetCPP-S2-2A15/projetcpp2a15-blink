@@ -25,10 +25,9 @@ etablissement::etablissement(int id_etab, QString nom, QString adresse, int tele
 bool etablissement::ajouter()
 {
     QSqlQuery query;
-    query.prepare("INSERT INTO etablissement (id_etab, nom, adresse, telephone, email, type) "
-                  "VALUES (:id_etab, :nom, :adresse, :telephone, :email, :type)");
+    query.prepare("INSERT INTO etablissement (nom, adresse, telephone, email, type) "
+                  "VALUES (:nom, :adresse, :telephone, :email, :type)");
 
-    query.bindValue(":id_etab", id_etab);
     query.bindValue(":nom", nom);
     query.bindValue(":adresse", adresse);
     query.bindValue(":telephone", telephone);
