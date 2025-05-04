@@ -1,0 +1,10 @@
+release/connection.o
+release/etablissement.o
+release/exam.o
+release/main.o
+release/mainwindow.o
+release/map_qml.o
+release/qmlcache_loader.o
+release/qrc_qml_qmlcache.o
+release/moc_exam.o
+release/moc_mainwindow.o
