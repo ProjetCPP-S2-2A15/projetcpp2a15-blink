@@ -44,11 +44,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     // Connexion du bouton "Ajouter Candidat"
-    connect(ui->AJOUTER1, &QPushButton::clicked, this, &MainWindow::addCandidat);
+    connect(ui->AJOUTER1, &QPushButton::clicked, this, &MainWindow::on_addCandidat_clicked);
 
     // Connecter le bouton d'insertion d'image
-    connect(ui->INSERER1, &QPushButton::clicked, this, &MainWindow::insertImage);
-    connect(ui->ANNULER3, &QPushButton::clicked, this, &MainWindow::cancelImage);
+    /*connect(ui->INSERER1, &QPushButton::clicked, this, &MainWindow::insertImage);
+    connect(ui->ANNULER3, &QPushButton::clicked, this, &MainWindow::cancelImage);*/
 }
 
 MainWindow::~MainWindow()
@@ -56,7 +56,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::addCandidat()
+void MainWindow::on_addCandidat_clicked()
 {
     // Récupérer les valeurs des champs du formulaire
     QString cin = ui->L2->text().trimmed();
@@ -109,7 +109,7 @@ void MainWindow::addCandidat()
     // Exécuter la requête
     if (query.exec()) {
         QMessageBox::information(this, "Succès", "Candidat ajouté avec succès !");
-        clearForm();  // Optionnel : Effacer les champs après l'ajout
+        //clearForm();  // Optionnel : Effacer les champs après l'ajout
     } else {
         QMessageBox::critical(this, "Erreur", "Erreur lors de l'ajout du candidat : " + query.lastError().text());
     }
@@ -177,7 +177,7 @@ void MainWindow::on_MODIFIERC_clicked()
     // Exécuter la requête
     if (query.exec()) {
         QMessageBox::information(this, "Succès", "Candidat modifié avec succès !");
-        clearForm();  // Optionnel : Effacer les champs après la modification
+        //clearForm();  // Optionnel : Effacer les champs après la modification
     } else {
         QMessageBox::critical(this, "Erreur", "Erreur lors de la modification : " + query.lastError().text());
     }
@@ -292,12 +292,11 @@ void MainWindow::on_SUPPRIMER_clicked()
     // Exécuter la requête
     if (query.exec()) {
         QMessageBox::information(this, "Succès", "Candidat supprimé avec succès !");
-        clearForm();  // Optionnel : Effacer les champs après suppression
+        //clearForm();  // Optionnel : Effacer les champs après suppression
     } else {
         QMessageBox::critical(this, "Erreur", "Erreur lors de la suppression : " + query.lastError().text());
     }
 }
-
 // Fonction pour annuler la suppression d'un candidat
 void MainWindow::on_ANNULER5_clicked()
 {
@@ -418,10 +417,10 @@ void MainWindow::on_ANNULER6_clicked()
     query.prepare("SELECT * FROM candidats");  // Remplacer par la table exacte si besoin
     query.exec();
     model->setQuery(query);
-    ui->TABLEC->setModel(model);  // Réinitialiser le tableau à son état initial sans tri
+    //ui->TABLEC->setModel(model);  // Réinitialiser le tableau à son état initial sans tri
 }
 
-void MainWindow::afficherStatistiques() {
+/*void MainWindow::afficherStatistiques() {
     afficherTotalCandidats();
     afficherParNiveau();
     afficherParAge();
@@ -536,10 +535,11 @@ QChartView* MainWindow::creerPieChart(const QString& titre, const QMap<QString, 
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
     return chartView;
+}*/
 
 
 // Fonction pour sélectionner et afficher l'image
-void MainWindow::on_selectImageButton_clicked()
+void MainWindow::on_IMAGE_clicked()
 {
     QString imagePath = QFileDialog::getOpenFileName(this, "Sélectionner une image", "", "Images (*.png *.jpg *.bmp)");
 
@@ -550,52 +550,12 @@ void MainWindow::on_selectImageButton_clicked()
 }
 
 // Fonction pour insérer l'image dans la base de données
-void MainWindow::insertImage()
-{
-    // Vérifier si l'image est sélectionnée
-    QString id = ui->L12->text().trimmed();
-    if (id.isEmpty()) {
-        QMessageBox::warning(this, "Erreur", "Veuillez saisir un ID valide pour le candidat !");
-        return;
-    }
 
-    // Récupérer l'image depuis le QLabel
-    QPixmap pixmap = *ui->IMAGE->pixmap();
-    if (pixmap.isNull()) {
-        QMessageBox::warning(this, "Erreur", "Veuillez sélectionner une image !");
-        return;
-    }
-
-    // Convertir l'image en format binaire (pour l'insérer dans la base)
-    QByteArray byteArray;
-    QBuffer buffer(&byteArray);
-    buffer.open(QIODevice::WriteOnly);
-    pixmap.save(&buffer, "PNG");
-
-    // Préparer la requête pour insérer l'image dans la base de données
-    QSqlQuery query;
-    query.prepare("UPDATE CANDIDATS SET IMAGE = :image WHERE ID_CANDIDAT = :id");
-    query.bindValue(":id", id);
-    query.bindValue(":image", byteArray);
-
-    // Exécuter la requête
-    if (query.exec()) {
-        QMessageBox::information(this, "Succès", "L'image a été insérée avec succès !");
-        ui->L12->clear();  // Effacer l'ID
-        ui->IMAGE->clear(); // Effacer l'image affichée
-    } else {
-        QMessageBox::critical(this, "Erreur", "Erreur lors de l'insertion de l'image : " + query.lastError().text());
-    }
-}
 
 // Fonction pour annuler l'action
-void MainWindow::cancelImage()
-{
-    ui->L12->clear();  // Effacer l'ID
-    ui->IMAGE->clear(); // Effacer l'image affichée
-}
 
-void MainWindow::on_INSERER2_clicked() {
+
+/*void MainWindow::on_INSERER2_clicked() {
     QString fileName = QFileDialog::getOpenFileName(this, "Choisir une image de carte d'identité", "", "Images (*.png *.jpg *.jpeg)");
 
     if (fileName.isEmpty()) return;
@@ -669,4 +629,50 @@ void MainWindow::remplirChamps(const QString &texteOCR) {
             if (date.isValid()) ui->Date_Naiss_C->setDate(date);
         }
     }
+}*/
+
+void MainWindow::on_ANNULER3_clicked()
+{
+    ui->L12->clear();  // Effacer l'ID
+    ui->IMAGE->clear(); // Effacer l'image affichée
 }
+
+
+void MainWindow::on_INSERER1_clicked()
+{
+    // Vérifier si l'image est sélectionnée
+    QString id = ui->L12->text().trimmed();
+    if (id.isEmpty()) {
+        QMessageBox::warning(this, "Erreur", "Veuillez saisir un ID valide pour le candidat !");
+        return;
+    }
+
+    // Récupérer l'image depuis le QLabel
+    QPixmap pixmap = ui->IMAGE->pixmap();
+    if (pixmap.isNull()) {
+        QMessageBox::warning(this, "Erreur", "Veuillez sélectionner une image !");
+        return;
+    }
+
+    // Convertir l'image en format binaire (pour l'insérer dans la base)
+    QByteArray byteArray;
+    QBuffer buffer(&byteArray);
+    buffer.open(QIODevice::WriteOnly);
+    pixmap.save(&buffer, "PNG");
+
+    // Préparer la requête pour insérer l'image dans la base de données
+    QSqlQuery query;
+    query.prepare("UPDATE CANDIDATS SET IMAGE = :image WHERE ID_CANDIDAT = :id");
+    query.bindValue(":id", id);
+    query.bindValue(":image", byteArray);
+
+    // Exécuter la requête
+    if (query.exec()) {
+        QMessageBox::information(this, "Succès", "L'image a été insérée avec succès !");
+        ui->L12->clear();  // Effacer l'ID
+        ui->IMAGE->clear(); // Effacer l'image affichée
+    } else {
+        QMessageBox::critical(this, "Erreur", "Erreur lors de l'insertion de l'image : " + query.lastError().text());
+    }
+}
+

@@ -2,8 +2,8 @@
 #define MAINWINDOW_H
 #include <QMainWindow>
 #include <QTableWidget>
-#include <tesseract/baseapi.h>
-#include <leptonica/allheaders.h>
+//#include <tesseract/baseapi.h>
+//#include <leptonica/allheaders.h>
 #include <QTranslator>
 
 
@@ -17,48 +17,34 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private slots:
-    void addCandidat();
-    void clearForm();
 
 private slots:
+    //void on_INSERER2_clicked();
+    //void on_ANNULER4_clicked();
+    void on_ANNULER1_clicked();
+    void on_ANNULER2_clicked();
+    void on_ANNULER5_clicked();
+    void on_ANNULER6_clicked();
+    void on_addCandidat_clicked();
+    //void clearForm();
     void on_RECHERCHER_clicked();
-
-private slots:
     void exportToPDF(QTableWidget* table);   // ← Déclaration correcte
     void exportToExcel(QTableWidget* table); // ← Déclaration correcte
-
-private slots:
-    void sortTableData();                    // ← Aussi ici
-
-private slots:
+    void sortTableData();
     void on_MODIFIERC_clicked();
-
-private slots:
     void on_SUPPRIMER_clicked();
-
-private slots:
-    void on_B_IMAGE_clicked();
-    void on_INSERER_IMAGE_clicked();
-    void on_ANNULER_IMAGE_clicked();
-
-private:
-    QString imagePath;
+    void on_IMAGE_clicked();
+    void on_INSERER1_clicked();
+    void on_ANNULER3_clicked();
 
 
-private slots:
-    void on_INSERER2_clicked();
-    void on_ANNULER4_clicked();
+/*private slots:
+    void afficherStatistiques();*/
 
-private slots:
-    void afficherStatistiques();
-
-private:
-    Ui::MainWindow *ui;
-
+/*private:
     void afficherTotalCandidats();
     void afficherParNiveau();
     void afficherParAge();
@@ -67,15 +53,17 @@ private:
 
     QChartView* creerBarChart(const QString& titre, const QMap<QString, int>& donnees);
     QChartView* creerPieChart(const QString& titre, const QMap<QString, int>& donnees);
-};
+};*/
 
-private:
+/*private:
     QString ocrCarteIdentite(const QString &imagePath);
     QString traduireTexte(const QString &texte);
     void remplirChamps(const QString &texteOCR);
+};*/
 
 private:
     Ui::MainWindow *ui;
+    QString imagePath;
 };
 
 #endif // MAINWINDOW_H
