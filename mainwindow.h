@@ -7,6 +7,8 @@
 #include "exam.h"
 #include "arduino.h"
 #include <QThread>
+#include <QTreeWidgetItem>
+#include "centre.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,6 +23,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void afficherCentres();
 
 private slots:
     void on_loginButton_clicked();
@@ -88,7 +91,7 @@ private slots:
 
     //exam
     void updateTable();
-    void on_tableView_clicked(const QModelIndex &index);
+    void on_tableView_2_clicked(const QModelIndex &index);
     void on_ajouterButton_clicked();
     void on_ajouterButton1_clicked();
     void on_supprimerButton_clicked();
@@ -101,6 +104,17 @@ private slots:
     void releaseSerialPort();
     void prepareForUpload();
     void addExam(QString nomExam, QDate dateExam);
+    void ajouterCentre();
+    void on_treeWidget_Centre_itemClicked(QTreeWidgetItem *item, int column);
+    void modifierCentre();
+    void supprimerCentre();
+    void clearFieldsAdd();
+    void clearFieldsUpdate();
+    void exporterPDF();
+    void filtrerCentres();
+    //void afficherStatistiques2();
+    void ContratDeVerification();
+    void envoyerEmail();
 
 
     void on_menubutton_7_clicked();
@@ -179,5 +193,6 @@ private:
     QByteArray data; // variable contenant les données reçues
     Arduino *arduino;
     Arduino A; // objet temporaire
+    Centre centre;
 };
 #endif // MAINWINDOW_H

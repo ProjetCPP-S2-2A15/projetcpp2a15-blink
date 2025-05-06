@@ -10,9 +10,13 @@ QT += location positioning
 QT += printsupport
 QT += serialport
 QT += core serialport sql
+QT       += core gui sql charts network
 
 CONFIG += c++11
 DEFINES += QT_DEPRECATED_WARNINGS
+CONFIG += lrelease
+CONFIG += embed_translations
+CONFIG += c++17
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -20,18 +24,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     arduino.cpp \
+    centre.cpp \
     connection.cpp \
     etablissement.cpp \
     exam.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    smtpclient.cpp
 
 HEADERS += \
     arduino.h \
+    centre.h \
     connection.h \
     etablissement.h \
     exam.h \
-    mainwindow.h
+    mainwindow.h \
+    smtpclient.h
 
 FORMS += \
     mainwindow.ui
