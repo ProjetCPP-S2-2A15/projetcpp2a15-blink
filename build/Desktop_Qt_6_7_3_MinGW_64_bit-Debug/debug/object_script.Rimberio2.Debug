@@ -1,0 +1,11 @@
+debug/centre.o
+debug/connection.o
+debug/logindialog.o
+debug/main.o
+debug/mainwindow.o
+debug/smtpclient.o
+debug/qrc_ressources.o
+debug/qrc_qmake_qmake_qm_files.o
+debug/moc_logindialog.o
+debug/moc_mainwindow.o
+debug/moc_smtpclient.o

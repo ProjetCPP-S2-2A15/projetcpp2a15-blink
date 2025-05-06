@@ -1,0 +1,11 @@
+release/centre.o
+release/connection.o
+release/logindialog.o
+release/main.o
+release/mainwindow.o
+release/smtpclient.o
+release/qrc_ressources.o
+release/qrc_qmake_qmake_qm_files.o
+release/moc_logindialog.o
+release/moc_mainwindow.o
+release/moc_smtpclient.o

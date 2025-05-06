@@ -1,4 +1,5 @@
-QT       += core gui sql
+QT       += core gui sql charts network
+QT       += printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -11,15 +12,20 @@ CONFIG += c++17
 SOURCES += \
     centre.cpp \
     connection.cpp \
+    logindialog.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    smtpclient.cpp
 
 HEADERS += \
     centre.h \
     connection.h \
-    mainwindow.h
+    logindialog.h \
+    mainwindow.h \
+    smtpclient.h
 
 FORMS += \
+    logindialog.ui \
     mainwindow.ui
 
 TRANSLATIONS += \
@@ -31,3 +37,6 @@ CONFIG += embed_translations
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    ressources.qrc

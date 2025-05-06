@@ -408,12 +408,18 @@ Makefile: ../../Rimberio2.pro ../../../6.7.3/mingw_64/mkspecs/features/spec_pre.
 		../../../6.7.3/mingw_64/mkspecs/features/yacc.prf \
 		../../../6.7.3/mingw_64/mkspecs/features/lex.prf \
 		../../Rimberio2.pro \
+		../../../6.7.3/mingw_64/lib/Qt6Charts.prl \
+		../../../6.7.3/mingw_64/lib/Qt6OpenGLWidgets.prl \
+		../../../6.7.3/mingw_64/lib/Qt6PrintSupport.prl \
 		../../../6.7.3/mingw_64/lib/Qt6Widgets.prl \
+		../../../6.7.3/mingw_64/lib/Qt6OpenGL.prl \
 		../../../6.7.3/mingw_64/lib/Qt6Gui.prl \
 		../../../6.7.3/mingw_64/lib/Qt6Sql.prl \
+		../../../6.7.3/mingw_64/lib/Qt6Network.prl \
 		../../../6.7.3/mingw_64/lib/Qt6Core.prl \
 		../../../6.7.3/mingw_64/lib/Qt6EntryPoint.prl \
 		../../../6.7.3/mingw_64/mkspecs/features/build_pass.prf \
+		../../ressources.qrc \
 		debug/qmake_qmake_qm_files.qrc \
 		release/qmake_qmake_qm_files.qrc
 	$(QMAKE) -o Makefile ..\..\Rimberio2.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
@@ -755,12 +761,18 @@ Makefile: ../../Rimberio2.pro ../../../6.7.3/mingw_64/mkspecs/features/spec_pre.
 ../../../6.7.3/mingw_64/mkspecs/features/yacc.prf:
 ../../../6.7.3/mingw_64/mkspecs/features/lex.prf:
 ../../Rimberio2.pro:
+../../../6.7.3/mingw_64/lib/Qt6Charts.prl:
+../../../6.7.3/mingw_64/lib/Qt6OpenGLWidgets.prl:
+../../../6.7.3/mingw_64/lib/Qt6PrintSupport.prl:
 ../../../6.7.3/mingw_64/lib/Qt6Widgets.prl:
+../../../6.7.3/mingw_64/lib/Qt6OpenGL.prl:
 ../../../6.7.3/mingw_64/lib/Qt6Gui.prl:
 ../../../6.7.3/mingw_64/lib/Qt6Sql.prl:
+../../../6.7.3/mingw_64/lib/Qt6Network.prl:
 ../../../6.7.3/mingw_64/lib/Qt6Core.prl:
 ../../../6.7.3/mingw_64/lib/Qt6EntryPoint.prl:
 ../../../6.7.3/mingw_64/mkspecs/features/build_pass.prf:
+../../ressources.qrc:
 debug/qmake_qmake_qm_files.qrc:
 release/qmake_qmake_qm_files.qrc:
 qmake: FORCE

@@ -29,6 +29,11 @@ private slots:
     void supprimerCentre();
     void clearFieldsAdd();
     void clearFieldsUpdate();
+    void exporterPDF();
+    void filtrerCentres();
+    void afficherStatistiques();
+    void ContratDeVerification();
+    void envoyerEmail();
 
 private:
     Ui::MainWindow *ui;
