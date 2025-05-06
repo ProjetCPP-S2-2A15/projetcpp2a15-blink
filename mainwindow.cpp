@@ -161,7 +161,7 @@ void MainWindow::on_MODIFIERC_clicked()
             NUMTEL = :numtel,
             EMAIL = :email
         WHERE CIN_CANDIDAT = :cin OR ID_ = :id
-    )");
+        )");
 
     // Lier les valeurs aux paramètres de la requête
     query.bindValue(":id", id);
@@ -420,33 +420,23 @@ void MainWindow::on_ANNULER6_clicked()
     //ui->TABLEC->setModel(model);  // Réinitialiser le tableau à son état initial sans tri
 }
 
-/*void MainWindow::afficherStatistiques() {
-    afficherTotalCandidats();
-    afficherParNiveau();
-    afficherParAge();
-    afficherParVille();
-    afficherNaissanceParAnnee();
-}
+// Implémenter les nouvelles méthodes :
 
-void MainWindow::afficherTotalCandidats() {
+int MainWindow::getTotalCandidats() {
     QSqlQuery query("SELECT COUNT(*) FROM CANDIDAT");
-    if (query.next()) {
-        int total = query.value(0).toInt();
-        QMessageBox::information(this, "Statistique", "Nombre total de candidats : " + QString::number(total));
-    }
+    return query.next() ? query.value(0).toInt() : 0;
 }
 
-void MainWindow::afficherParNiveau() {
+QMap<QString, int> MainWindow::getStatsNiveau() {
     QSqlQuery query("SELECT Niveau_C, COUNT(*) FROM CANDIDAT GROUP BY Niveau_C");
     QMap<QString, int> stats;
     while (query.next()) {
         stats[query.value(0).toString()] = query.value(1).toInt();
     }
-    QChartView* chartView = creerPieChart("Répartition par niveau", stats);
-    chartView->setParent(ui->widgetNiveau); // Crée un QWidget dans l'UI nommé widgetNiveau
+    return stats;
 }
 
-void MainWindow::afficherParAge() {
+QMap<QString, int> MainWindow::getStatsAge() {
     QSqlQuery query("SELECT Date_Naiss_C FROM CANDIDAT");
     QDate currentDate = QDate::currentDate();
     QMap<QString, int> groupes;
@@ -464,26 +454,22 @@ void MainWindow::afficherParAge() {
 
         groupes[groupe]++;
     }
-
-    QChartView* chartView = creerBarChart("Répartition par âge", groupes);
-    chartView->setParent(ui->widgetAge); // Crée un QWidget dans l'UI nommé widgetAge
+    return groupes;
 }
 
-void MainWindow::afficherParVille() {
+QMap<QString, int> MainWindow::getStatsVille() {
     QSqlQuery query("SELECT Adresse_C FROM CANDIDAT");
     QMap<QString, int> villes;
 
     while (query.next()) {
         QString adresse = query.value(0).toString();
-        QString ville = adresse.section(',', -1).trimmed(); // supposer ville = dernier mot
+        QString ville = adresse.section(',', -1).trimmed();
         villes[ville]++;
     }
-
-    QChartView* chartView = creerPieChart("Répartition par ville", villes);
-    chartView->setParent(ui->widgetVille); // Crée un QWidget dans l'UI nommé widgetVille
+    return villes;
 }
 
-void MainWindow::afficherNaissanceParAnnee() {
+QMap<QString, int> MainWindow::getStatsNaissance() {
     QSqlQuery query("SELECT Date_Naiss_C FROM CANDIDAT");
     QMap<QString, int> annees;
 
@@ -492,144 +478,24 @@ void MainWindow::afficherNaissanceParAnnee() {
         QString annee = QString::number(date.year());
         annees[annee]++;
     }
-
-    QChartView* chartView = creerBarChart("Naissances par année", annees);
-    chartView->setParent(ui->widgetNaissance); // Crée un QWidget dans l'UI nommé widgetNaissance
+    return annees;
 }
 
-QChartView* MainWindow::creerBarChart(const QString& titre, const QMap<QString, int>& donnees) {
-    QBarSeries *series = new QBarSeries();
-    QBarSet *set = new QBarSet(titre);
+// Implémenter getStatsAge(), getStatsVille(), getStatsNaissance() de manière similaire
 
-    QStringList categories;
-    for (auto it = donnees.begin(); it != donnees.end(); ++it) {
-        *set << it.value();
-        categories << it.key();
-    }
+void MainWindow::afficherStatistiques() {
+    QMap<QString, QMap<QString, int>> allStats;
 
-    series->append(set);
-    QChart *chart = new QChart();
-    chart->addSeries(series);
-    chart->setTitle(titre);
-    chart->createDefaultAxes();
+    allStats["Total candidats"] = {{"Total", getTotalCandidats()}};
+    allStats["Répartition par niveau"] = getStatsNiveau();
+    allStats["Répartition par âge"] = getStatsAge();
+    allStats["Répartition par ville"] = getStatsVille();
+    allStats["Naissances par année"] = getStatsNaissance();
 
-    QBarCategoryAxis *axisX = new QBarCategoryAxis();
-    axisX->append(categories);
-    chart->setAxisX(axisX, series);
-
-    QChartView *chartView = new QChartView(chart);
-    chartView->setRenderHint(QPainter::Antialiasing);
-    return chartView;
+    StatsDialog *dialog = new StatsDialog(this);
+    dialog->setData(allStats);
+    dialog->exec();
 }
-
-QChartView* MainWindow::creerPieChart(const QString& titre, const QMap<QString, int>& donnees) {
-    QPieSeries *series = new QPieSeries();
-    for (auto it = donnees.begin(); it != donnees.end(); ++it) {
-        series->append(it.key(), it.value());
-    }
-
-    QChart *chart = new QChart();
-    chart->addSeries(series);
-    chart->setTitle(titre);
-
-    QChartView *chartView = new QChartView(chart);
-    chartView->setRenderHint(QPainter::Antialiasing);
-    return chartView;
-}*/
-
-
-// Fonction pour sélectionner et afficher l'image
-void MainWindow::on_IMAGE_clicked()
-{
-    QString imagePath = QFileDialog::getOpenFileName(this, "Sélectionner une image", "", "Images (*.png *.jpg *.bmp)");
-
-    if (!imagePath.isEmpty()) {
-        QPixmap pixmap(imagePath);
-        ui->IMAGE->setPixmap(pixmap.scaled(ui->IMAGE->size(), Qt::KeepAspectRatio));  // Afficher l'image dans le QLabel
-    }
-}
-
-// Fonction pour insérer l'image dans la base de données
-
-
-// Fonction pour annuler l'action
-
-
-/*void MainWindow::on_INSERER2_clicked() {
-    QString fileName = QFileDialog::getOpenFileName(this, "Choisir une image de carte d'identité", "", "Images (*.png *.jpg *.jpeg)");
-
-    if (fileName.isEmpty()) return;
-
-    // OCR
-    QString texteOCR = ocrCarteIdentite(fileName);
-    if (texteOCR.isEmpty()) {
-        QMessageBox::warning(this, "Erreur", "Impossible de lire la carte.");
-        return;
-    }
-
-    // Traduction
-    QString texteTraduit = traduireTexte(texteOCR);
-
-    // Remplissage
-    remplirChamps(texteTraduit);
-}
-
-void MainWindow::on_ANNULER4_clicked() {
-    ui->ID_C->clear();
-    ui->CIN_C->clear();
-    ui->Nom_C->clear();
-    ui->Prenom_C->clear();
-    ui->Niveau_C->clear();
-    ui->Email_C->clear();
-    ui->Adresse_C->clear();
-    ui->Tel_C->clear();
-    ui->ID_Etabliss->clear();
-    ui->Date_Naiss_C->setDate(QDate(2000, 1, 1));
-}
-
-QString MainWindow::ocrCarteIdentite(const QString &imagePath) {
-    tesseract::TessBaseAPI tess;
-    if (tess.Init(NULL, "eng+fra")) {
-        return "";
-    }
-
-    tess.SetImage(imagePath.toStdString().c_str());
-    QString result = QString::fromUtf8(tess.GetUTF8Text());
-    tess.End();
-    return result;
-}
-
-QString MainWindow::traduireTexte(const QString &texte) {
-    // À remplacer par une vraie API ou dictionnaire multilingue si besoin
-    QString traduit = texte;
-    traduit.replace("Name", "Nom");
-    traduit.replace("First Name", "Prenom");
-    traduit.replace("Date of Birth", "Date de Naissance");
-    traduit.replace("Address", "Adresse");
-    traduit.replace("Level", "Niveau");
-    // etc...
-    return traduit;
-}
-
-void MainWindow::remplirChamps(const QString &texteOCR) {
-    QStringList lignes = texteOCR.split('\n', Qt::SkipEmptyParts);
-    for (const QString &ligne : lignes) {
-        if (ligne.contains("ID")) ui->ID_C->setText(ligne.section(':', 1).trimmed());
-        if (ligne.contains("CIN")) ui->CIN_C->setText(ligne.section(':', 1).trimmed());
-        if (ligne.contains("Nom")) ui->Nom_C->setText(ligne.section(':', 1).trimmed());
-        if (ligne.contains("Prenom")) ui->Prenom_C->setText(ligne.section(':', 1).trimmed());
-        if (ligne.contains("Niveau")) ui->Niveau_C->setText(ligne.section(':', 1).trimmed());
-        if (ligne.contains("Email")) ui->Email_C->setText(ligne.section(':', 1).trimmed());
-        if (ligne.contains("Adresse")) ui->Adresse_C->setText(ligne.section(':', 1).trimmed());
-        if (ligne.contains("Telephone") || ligne.contains("Tel")) ui->Tel_C->setText(ligne.section(':', 1).trimmed());
-        if (ligne.contains("Etablissement")) ui->ID_Etabliss->setText(ligne.section(':', 1).trimmed());
-        if (ligne.contains("Naissance")) {
-            QString dateStr = ligne.section(':', 1).trimmed();
-            QDate date = QDate::fromString(dateStr, "dd/MM/yyyy");
-            if (date.isValid()) ui->Date_Naiss_C->setDate(date);
-        }
-    }
-}*/
 
 void MainWindow::on_ANNULER3_clicked()
 {

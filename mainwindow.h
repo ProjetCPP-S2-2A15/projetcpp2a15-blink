@@ -2,9 +2,8 @@
 #define MAINWINDOW_H
 #include <QMainWindow>
 #include <QTableWidget>
-//#include <tesseract/baseapi.h>
-//#include <leptonica/allheaders.h>
-#include <QTranslator>
+#include "statsdialog.h"
+#include <QtCharts>
 
 
 
@@ -39,27 +38,16 @@ private slots:
     void on_IMAGE_clicked();
     void on_INSERER1_clicked();
     void on_ANNULER3_clicked();
+    void afficherStatistiques();
 
-
-/*private slots:
-    void afficherStatistiques();*/
-
-/*private:
-    void afficherTotalCandidats();
-    void afficherParNiveau();
-    void afficherParAge();
-    void afficherParVille();
-    void afficherNaissanceParAnnee();
-
+private:
+    QMap<QString, int> getStatsNiveau();
+    QMap<QString, int> getStatsAge();
+    QMap<QString, int> getStatsVille();
+    QMap<QString, int> getStatsNaissance();
+    int getTotalCandidats();
     QChartView* creerBarChart(const QString& titre, const QMap<QString, int>& donnees);
     QChartView* creerPieChart(const QString& titre, const QMap<QString, int>& donnees);
-};*/
-
-/*private:
-    QString ocrCarteIdentite(const QString &imagePath);
-    QString traduireTexte(const QString &texte);
-    void remplirChamps(const QString &texteOCR);
-};*/
 
 private:
     Ui::MainWindow *ui;

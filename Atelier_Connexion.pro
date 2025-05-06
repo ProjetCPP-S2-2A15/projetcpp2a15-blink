@@ -4,11 +4,11 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT += core gui sql
 QT += printsupport
 QT += sql
 QT += charts
-
+QT += charts sql
 
 
 
@@ -34,12 +34,14 @@ SOURCES += \
     candidat.cpp \
         main.cpp \
         mainwindow.cpp \
-    connection.cpp
+    connection.cpp \
+    statsdialog.cpp
 
 HEADERS += \
     candidat.h \
         mainwindow.h \
-    connection.h
+    connection.h \
+    statsdialog.h
 
 FORMS += \
         mainwindow.ui
