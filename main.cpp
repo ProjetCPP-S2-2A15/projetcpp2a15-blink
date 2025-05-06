@@ -2,11 +2,13 @@
 #include <QApplication>
 #include <QMessageBox>
 #include "connection.h"
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     MainWindow w;
     Connection c;
+    ChatbotWindow b;
     bool test=c.createconnect();
     if(test)
     {w.show();
@@ -22,5 +24,6 @@ int main(int argc, char *argv[])
 
 
 
+    b.show();
     return a.exec();
 }

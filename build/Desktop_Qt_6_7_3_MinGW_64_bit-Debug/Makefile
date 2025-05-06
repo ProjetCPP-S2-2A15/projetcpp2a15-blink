@@ -390,6 +390,7 @@ Makefile: ../../integration.pro C:/Qt/6.7.3/mingw_64/mkspecs/win32-g++/qmake.con
 		C:/Qt/6.7.3/mingw_64/mkspecs/features/resolve_config.prf \
 		C:/Qt/6.7.3/mingw_64/mkspecs/features/exclusive_builds_post.prf \
 		C:/Qt/6.7.3/mingw_64/mkspecs/features/default_post.prf \
+		C:/Qt/6.7.3/mingw_64/mkspecs/features/lrelease.prf \
 		C:/Qt/6.7.3/mingw_64/mkspecs/features/qml_debug.prf \
 		C:/Qt/6.7.3/mingw_64/mkspecs/features/precompile_header.prf \
 		C:/Qt/6.7.3/mingw_64/mkspecs/features/warn_on.prf \
@@ -410,6 +411,8 @@ Makefile: ../../integration.pro C:/Qt/6.7.3/mingw_64/mkspecs/win32-g++/qmake.con
 		../../integration.pro \
 		C:/Qt/6.7.3/mingw_64/lib/Qt6QuickWidgets.prl \
 		C:/Qt/6.7.3/mingw_64/lib/Qt6PrintSupport.prl \
+		C:/Qt/6.7.3/mingw_64/lib/Qt6Charts.prl \
+		C:/Qt/6.7.3/mingw_64/lib/Qt6OpenGLWidgets.prl \
 		C:/Qt/6.7.3/mingw_64/lib/Qt6Widgets.prl \
 		C:/Qt/6.7.3/mingw_64/lib/Qt6Location.prl \
 		C:/Qt/6.7.3/mingw_64/lib/Qt6PositioningQuick.prl \
@@ -422,12 +425,15 @@ Makefile: ../../integration.pro C:/Qt/6.7.3/mingw_64/mkspecs/win32-g++/qmake.con
 		C:/Qt/6.7.3/mingw_64/lib/Qt6Network.prl \
 		C:/Qt/6.7.3/mingw_64/lib/Qt6Sql.prl \
 		C:/Qt/6.7.3/mingw_64/lib/Qt6Positioning.prl \
+		C:/Qt/6.7.3/mingw_64/lib/Qt6SerialPort.prl \
 		C:/Qt/6.7.3/mingw_64/lib/Qt6Core.prl \
 		C:/Qt/6.7.3/mingw_64/lib/Qt6QmlBuiltins.prl \
 		C:/Qt/6.7.3/mingw_64/lib/Qt6EntryPoint.prl \
 		.qmake.stash \
 		C:/Qt/6.7.3/mingw_64/mkspecs/features/build_pass.prf \
-		../../qml.qrc
+		../../qml.qrc \
+		debug/qmake_qmake_qm_files.qrc \
+		release/qmake_qmake_qm_files.qrc
 	$(QMAKE) -o Makefile ..\..\integration.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 C:/Qt/6.7.3/mingw_64/mkspecs/features/spec_pre.prf:
 C:/Qt/6.7.3/mingw_64/mkspecs/features/device_config.prf:
@@ -749,6 +755,7 @@ C:/Qt/6.7.3/mingw_64/mkspecs/features/win32/default_pre.prf:
 C:/Qt/6.7.3/mingw_64/mkspecs/features/resolve_config.prf:
 C:/Qt/6.7.3/mingw_64/mkspecs/features/exclusive_builds_post.prf:
 C:/Qt/6.7.3/mingw_64/mkspecs/features/default_post.prf:
+C:/Qt/6.7.3/mingw_64/mkspecs/features/lrelease.prf:
 C:/Qt/6.7.3/mingw_64/mkspecs/features/qml_debug.prf:
 C:/Qt/6.7.3/mingw_64/mkspecs/features/precompile_header.prf:
 C:/Qt/6.7.3/mingw_64/mkspecs/features/warn_on.prf:
@@ -769,6 +776,8 @@ C:/Qt/6.7.3/mingw_64/mkspecs/features/lex.prf:
 ../../integration.pro:
 C:/Qt/6.7.3/mingw_64/lib/Qt6QuickWidgets.prl:
 C:/Qt/6.7.3/mingw_64/lib/Qt6PrintSupport.prl:
+C:/Qt/6.7.3/mingw_64/lib/Qt6Charts.prl:
+C:/Qt/6.7.3/mingw_64/lib/Qt6OpenGLWidgets.prl:
 C:/Qt/6.7.3/mingw_64/lib/Qt6Widgets.prl:
 C:/Qt/6.7.3/mingw_64/lib/Qt6Location.prl:
 C:/Qt/6.7.3/mingw_64/lib/Qt6PositioningQuick.prl:
@@ -781,12 +790,15 @@ C:/Qt/6.7.3/mingw_64/lib/Qt6Qml.prl:
 C:/Qt/6.7.3/mingw_64/lib/Qt6Network.prl:
 C:/Qt/6.7.3/mingw_64/lib/Qt6Sql.prl:
 C:/Qt/6.7.3/mingw_64/lib/Qt6Positioning.prl:
+C:/Qt/6.7.3/mingw_64/lib/Qt6SerialPort.prl:
 C:/Qt/6.7.3/mingw_64/lib/Qt6Core.prl:
 C:/Qt/6.7.3/mingw_64/lib/Qt6QmlBuiltins.prl:
 C:/Qt/6.7.3/mingw_64/lib/Qt6EntryPoint.prl:
 .qmake.stash:
 C:/Qt/6.7.3/mingw_64/mkspecs/features/build_pass.prf:
 ../../qml.qrc:
+debug/qmake_qmake_qm_files.qrc:
+release/qmake_qmake_qm_files.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\..\integration.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 

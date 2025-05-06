@@ -1,0 +1,17 @@
+debug/aimanager.o
+debug/arduino.o
+debug/centre.o
+debug/chatbotwindow.o
+debug/connection.o
+debug/enseignant.o
+debug/etablissement.o
+debug/exam.o
+debug/main.o
+debug/mainwindow.o
+debug/smtpclient.o
+debug/qrc_qml.o
+debug/qrc_qmake_qmake_qm_files.o
+debug/moc_arduino.o
+debug/moc_chatbotwindow.o
+debug/moc_mainwindow.o
+debug/moc_smtpclient.o

@@ -9,6 +9,10 @@
 #include <QThread>
 #include <QTreeWidgetItem>
 #include "centre.h"
+#include "chatbotwindow.h"
+#include "aimanager.h"
+#include <QVariant>
+#include "enseignant.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -187,6 +191,35 @@ private slots:
 
     void on_logoutbutton_7_clicked();
 
+
+    //enseignant
+    void on_ajout_clicked();
+
+    void on_supp_clicked();
+
+    void on_modifier_2_clicked();
+
+
+
+    void on_rechercher_clicked();
+
+    void on_refresh_clicked();
+
+    void on_btn_tri_2_clicked();
+
+    void on_btn_pdf_2_clicked();
+
+    void afficherStatistiques2();
+
+    void on_btnGetSuggestion_clicked();
+
+
+
+    //void on_btnChatbot_clicked();
+
+    int getAssignmentsCountForTeacher(int teacherId);
+    QList<Teacher> fetchTeachersFromDatabase();
+
 private:
     Ui::MainWindow *ui;
     etablissement Etmp;
@@ -194,5 +227,9 @@ private:
     Arduino *arduino;
     Arduino A; // objet temporaire
     Centre centre;
+    enseignant En;
+
+signals:
+    void setCenter(QVariant, QVariant);
 };
 #endif // MAINWINDOW_H

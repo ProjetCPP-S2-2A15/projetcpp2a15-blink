@@ -3,6 +3,8 @@
 -IC:/Qt/6.7.3/mingw_64/include
 -IC:/Qt/6.7.3/mingw_64/include/QtQuickWidgets
 -IC:/Qt/6.7.3/mingw_64/include/QtPrintSupport
+-IC:/Qt/6.7.3/mingw_64/include/QtCharts
+-IC:/Qt/6.7.3/mingw_64/include/QtOpenGLWidgets
 -IC:/Qt/6.7.3/mingw_64/include/QtWidgets
 -IC:/Qt/6.7.3/mingw_64/include/QtLocation
 -IC:/Qt/6.7.3/mingw_64/include/QtPositioningQuick
@@ -28,6 +30,7 @@
 -IC:/Qt/6.7.3/mingw_64/include/QtPositioning
 -IC:/Qt/6.7.3/mingw_64/include/QtCore/6.7.3
 -IC:/Qt/6.7.3/mingw_64/include/QtCore/6.7.3/QtCore
+-IC:/Qt/6.7.3/mingw_64/include/QtSerialPort
 -IC:/Qt/6.7.3/mingw_64/include/QtCore
 -IC:/Qt/6.7.3/mingw_64/include/QtQmlBuiltins/6.7.3
 -IC:/Qt/6.7.3/mingw_64/include/QtQmlBuiltins/6.7.3/QtQmlBuiltins

@@ -23,9 +23,12 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    aimanager.cpp \
     arduino.cpp \
     centre.cpp \
+    chatbotwindow.cpp \
     connection.cpp \
+    enseignant.cpp \
     etablissement.cpp \
     exam.cpp \
     main.cpp \
@@ -33,9 +36,12 @@ SOURCES += \
     smtpclient.cpp
 
 HEADERS += \
+    aimanager.h \
     arduino.h \
     centre.h \
+    chatbotwindow.h \
     connection.h \
+    enseignant.h \
     etablissement.h \
     exam.h \
     mainwindow.h \
